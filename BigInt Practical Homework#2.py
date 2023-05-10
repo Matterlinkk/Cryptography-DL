@@ -1,5 +1,10 @@
+"""Клас для виконання операцій над великими цілими числами, представленими в різних системах чисел."""
 class BigInt:
 
+    """Ініціалізація об'єкта BigInt
+    Значення value може бути як в десятковій системі, так і в бінарній та шістнадцятковій, але треба позначити правильний флаг системи, яка використовується:
+    "D" - десяткова система "H" - десяткова система "B" - шістнадцяткова система
+    """
     def __init__(self, value, flag="D"):
         if flag == "D":
             self.num = value
@@ -10,7 +15,7 @@ class BigInt:
         if flag == "B":
             self.num = str(int(self.num, 2))
             self.flag = flag
-
+    """Отримання шістнадцятково представлення великого цілого числа."""
     def get_hex(self) -> str:
         if self.flag == "H":
             return self.num
@@ -18,7 +23,7 @@ class BigInt:
             return hex(int(self.num))[2:]
         elif self.flag == "B":
             return hex(int(self.num, 2))[2:]
-
+    """Отримання десяткового представлення великого цілого числа."""
     def get_decimal(self) -> str:
         if self.flag == "D":
             return self.num
@@ -26,7 +31,7 @@ class BigInt:
             return str(int(self.num, 16))
         elif self.flag == "B":
             return str(int(self.num, 2))
-
+    """Отримання бінарного представлення великого цілого числа."""
     def get_binary(self) -> str:
         if self.flag == "B":
             return self.num
@@ -34,24 +39,24 @@ class BigInt:
             return bin(int(self.num))[2:]
         elif self.flag == "H":
             return bin(int(self.num, 16))[2:]
-
+    """Зміна шістнадцятково представлення великого цілого числа."""
     def set_to_hex(self, other: int):
         self.num = hex(other)[2:]
         self.flag = "H"
-
+    """Зміна десяткового представлення великого цілого числа."""
     def set_to_decimal(self, other):
         self.flag = "D"
         self.num = int(other, 16)
-
+    """Зміна бінарного представлення великого цілого числа."""
     def set_to_binary(self, other):
         self.flag = "B"
         self.num = bin(other)[2:]
-
+    """Показує значення в трьох системах числення"""
     def show_all(self):
         print(f'{self.get_binary()} - binary')
         print(f'{self.get_decimal()} - decimal')
         print(f'{self.get_hex()} - hex')
-
+    """Функція додавання, показує значення в трьох системах числення"""
     def sum_class_type(self, other): #func SUM
 
         value1 = self.get_decimal()
@@ -65,7 +70,7 @@ class BigInt:
         print(f'{result_hex} - hex')
 
         return 'SUM'
-
+    """Функція віднімання, показує значення в трьох системах числення"""
     def sub_class_type(self, other): #func SUB
 
         value1 = self.get_decimal()
@@ -82,7 +87,7 @@ class BigInt:
         print(f'{result_hex} - hex')
 
         return 'SUB'
-
+    """Функція ділення з остачею, показує значення в трьох системах числення"""
     def mod_class_type(self, other):
 
         value1 = self.get_decimal()
@@ -97,7 +102,7 @@ class BigInt:
         print(f'{result_hex} - hex')
 
         return "MOD"
-
+    """Функція множення, показує значення в трьох системах числення"""
     def mul_class_type(self, other): #func MUL
 
         value1 = self.get_decimal()
@@ -112,7 +117,7 @@ class BigInt:
         print(f'{result_hex} - hex')
 
         return 'MUL'
-
+    """Функція додавання, показує значення в трьох системах числення"""
     def inv_class_type(self):
 
         result = ~int(self.get_decimal())
@@ -124,7 +129,7 @@ class BigInt:
         print(f'{result_hex[0] + result_hex[3]} - hex')
 
         return 'INV'
-
+    """Функція побітове виключне або, показує значення в трьох системах числення"""
     def xor_class_type(self, other):
 
         value1 = self.get_decimal()
@@ -132,13 +137,13 @@ class BigInt:
         result = int(value1) ^ int(value2)
         result_hex = hex(result)
         result_binary = bin(result)
-
+        
         print(f'{result_binary[2:]} - binary')
         print(f'{result} - decimal')
         print(f'{result_hex[2:]} - hex')
 
         return 'XOR'
-
+    """Функція побітове або, показує значення в трьох системах числення"""
     def or_class_type(self, other):
 
         value1 = self.get_decimal()
@@ -152,7 +157,7 @@ class BigInt:
         print(f'{result_hex[2:]} - hex')
 
         return 'OR'
-
+    """Функція побітове і, показує значення в трьох системах числення"""
     def and_class_type(self, other):
 
         value1 = self.get_decimal()
@@ -169,7 +174,7 @@ class BigInt:
 
     def __str__(self):
         return self.num
-
+#зсуви не виконав
 
 number = BigInt("51bf608414ad5726a3c1bec098f77b1b54ffb2787f8d528a74c1d7fde6470ea4", "H")
 number1 = BigInt("403db8ad88a3932a0b7e8189aed9eeffb8121dfac05c3512fdb396dd73f6331c", "H")
